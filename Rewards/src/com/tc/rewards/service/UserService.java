@@ -10,4 +10,9 @@ public interface UserService {
 	  public void deleteUserById(String id);
 	  /*增加用户*/
 	  public void insertUserById(User user);
+	  
+	// 用户登录
+	public User checkLogin(User user);
+		
+	
 }

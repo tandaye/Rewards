@@ -26,4 +26,18 @@
 		id=#{id}
 	</select>
 
+	<select id="findByUserNameAndPassword" resultType="user">
+		select * from user where name=#{name} and password=#{password}
+	</select>
+
+	<select id="checkLogin" parameterType="user" resultType="user">
+		select
+		<include refid="prop" />
+		FROM user WHERE name=#{name} and password=#{password}
+    </select>
+    <select id="findByName" parameterType="user" resultType="user">
+    	select * from user where name=#{name}
+    
+    </select>
+    
 </mapper>

@@ -11,4 +11,10 @@ public interface UserMapper {
 	  /*增加用户*/
 	  public void insertUserById(User user);
 	  
+	 
+	  
+	// 通过用户名进行查询
+	public User findByName(User user);
+		
+	
 }

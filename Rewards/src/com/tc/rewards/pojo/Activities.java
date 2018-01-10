@@ -38,6 +38,12 @@ public class Activities {
 	public void setExchangeId(String exchangeId) {
 		this.exchangeId = exchangeId;
 	}
+	@Override
+	public String toString() {
+		return "Activities [id=" + id + ", name=" + name + ", number=" + number
+				+ ", typeId=" + typeId + ", exchangeId=" + exchangeId
+				+ ", toString()=" + super.toString() + "]";
+	}
 	
 	
 }

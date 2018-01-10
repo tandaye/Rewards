@@ -21,6 +21,7 @@ public class ActivitiesController {
 	@RequestMapping("/findActivities")
 	public String findActivities(HttpServletRequest request,String id) throws Exception{
 		Activities activities = activitiesService.findActivitiesById(id);
+		System.err.println(activities.toString()+"____________________________________");
 		request.setAttribute("activities", activities);
 		
 		return "backstage/jsp/index";

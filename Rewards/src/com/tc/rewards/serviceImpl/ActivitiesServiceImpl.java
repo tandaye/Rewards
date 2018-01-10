@@ -19,8 +19,11 @@ public class ActivitiesServiceImpl implements ActivitiesService {
 
 	@Override
 	public Activities findActivitiesById(String id) throws Exception {
+		
 		Activities activities = activitiesMapper.findActivitiesById(id);
 		return activities;
+		
+		
 	}
 
 

@@ -25,6 +25,12 @@
 </head>
 
 <body>
+<form action="activities/findActivities" method="post">
+  <input type="text" name="id" placeholder="商品id">
+  <div>
+		<button type="submit">查询</button>
+	</div>
+  
 <table width="100%" border="1">
 	<tr>
 		<td>编号</td>
@@ -32,8 +38,9 @@
 		<td>剩余数量</td>
 		<td>类型</td>
 	</tr>
+	
 	<tr>
-		<td>"${activities.id}"</td>
+		<td>${activities.id}</td>
 		<td>${activities.name}</td>
 		<td>${activities.number}</td>
 		<td>${activities.typeId}</td>
@@ -41,5 +48,7 @@
 	
    
 </table>
+	
+</form>
 </body>
 </html>
