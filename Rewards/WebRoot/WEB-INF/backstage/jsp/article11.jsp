@@ -25,12 +25,20 @@
 </head>
 
 <body>
-<form action="activities/findActivities" method="post">
-  <input type="text" name="id" placeholder="商品id">
+<form action="article/findArticleTest" method="post">
+ <!--  <input type="text" name="id" placeholder="商品id">
   <div>
 		<button type="submit">查询</button>
-	</div>
-  
+	</div> -->
+  <tr>
+     <!-- pojo绑定     既name=""中的值和pojo中的一样，输入框中的值就传进去了。-->
+  		<td>
+  		商品ID:<input name="id"/>
+  		</td>
+  		<td>
+  			<input type="submit" value="查询"/>
+  		</td>
+  </tr>
 <table width="100%" border="1">
 	<tr>
 		<td>编号</td>
@@ -40,10 +48,10 @@
 	</tr>
 	
 	<tr>
-		<td>${activities.id}</td>
-		<td>${activities.name}</td>
-		<td>${activities.number}</td>
-		<td>${activities.typeId}</td>
+		<td>${article.id}</td>
+		<td>${article.name}</td>
+		<td>${article.number}</td>
+		<td>${article.typeId}</td>
 	</tr>
 	
    

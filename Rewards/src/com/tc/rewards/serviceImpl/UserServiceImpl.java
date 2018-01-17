@@ -51,10 +51,10 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public User checkLogin(User user) {
 		User user2 =userMapper.findByName(user);
+		System.out.println(user2.toString()+"1111111111111111111111");
+		//String psw =IdUtil.md5(user.getPassword());
 		
-		String psw =IdUtil.md5(user.getPassword());
-		
-		if(user2!=null && psw.equals(user2.getPassword())){
+		if(user2!=null && (user.getPassword()).equals(user2.getPassword())){
 			System.err.println("µÇÂ¼³É¹¦£¡");
 			return user2;
 		}

@@ -3,7 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tc.rewards.mapper.TypeMapper">
 
-	<select id="findTypeById" parameterType="String" resultType="Type">
+	<select id="findTypeById" parameterType="String" resultType="type">
 		select id,name 
 		from user
 		where id=#{id}
@@ -13,5 +13,9 @@
 		insert into type(id,name)
 		values(#{id},#{name})
 	 </select>	
+	 
+	 <select id="findAllType" resultType="type">
+	   select * from type
+	 </select>
 
 </mapper>

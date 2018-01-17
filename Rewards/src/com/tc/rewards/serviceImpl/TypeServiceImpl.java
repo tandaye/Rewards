@@ -1,5 +1,7 @@
 package com.tc.rewards.serviceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -25,5 +27,11 @@ public class TypeServiceImpl implements TypeService{
 	public void insertTypeById(Type type) {
 		typeMapper.insertTypeById(type);
 	 }
+
+	@Override
+	public List<Type> findAllType() {
+		
+		return typeMapper.findAllType();
+		}
 
 }

@@ -11,8 +11,10 @@
         http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
  
         <!-- 添加service -->
-		<bean name="activitiesService" class="com.tc.rewards.serviceImpl.ActivitiesServiceImpl" ></bean>
-		<bean name="userService" class="com.tc.rewards.serviceImpl.UserServiceImpl" ></bean>
-		<bean name="typeService" class="com.tc.rewards.serviceImpl.TypeServiceImpl" ></bean>
+        <bean name="articleService" class="com.tc.rewards.serviceImpl.ArticleServiceImpl" ></bean>
+		<bean name="userService"    class="com.tc.rewards.serviceImpl.UserServiceImpl" ></bean>
+		<bean name="typeService" 	class="com.tc.rewards.serviceImpl.TypeServiceImpl" ></bean>
+		<bean name="ordersService"	class="com.tc.rewards.serviceImpl.OrdersServiceImpl"></bean>
+		
 </beans>
  

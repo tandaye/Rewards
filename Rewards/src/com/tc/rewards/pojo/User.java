@@ -9,6 +9,29 @@ public class User {
 	private String password; 
 	private String grageId;
 	private String roleId;
+	private String addressId;
+	private String scoreId;
+	private String orderId;
+	
+	
+	public String getOrderId() {
+		return orderId;
+	}
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
+	}
+	public String getAddressId() {
+		return addressId;
+	}
+	public void setAddressId(String addressId) {
+		this.addressId = addressId;
+	}
+	public String getScoreId() {
+		return scoreId;
+	}
+	public void setScoreId(String scoreId) {
+		this.scoreId = scoreId;
+	}
 	public String getId() {
 		return id;
 	}
@@ -50,6 +73,13 @@ public class User {
 	}
 	public void setRoleId(String roleId) {
 		this.roleId = roleId;
+	}
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", age=" + age + ", sex="
+				+ sex + ", password=" + password + ", grageId=" + grageId
+				+ ", roleId=" + roleId + ", addressId=" + addressId
+				+ ", scoreId=" + scoreId + "]";
 	}
 	
 	

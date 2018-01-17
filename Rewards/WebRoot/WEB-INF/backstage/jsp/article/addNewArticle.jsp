@@ -17,13 +17,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="renderer" content="webkit">
 <meta http-equiv="Cache-Control" content="no-siteapp" />
-<link rel="icon" type="image/png" href="resource/i/favicon.png">
-<link rel="apple-touch-icon-precomposed" href="resource/i/app-icon72x72@2x.png">
+<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/resource/i/favicon.png">
+<link rel="apple-touch-icon-precomposed" href="${pageContext.request.contextPath}/resource/i/app-icon72x72@2x.png">
 <meta name="apple-mobile-web-app-title" content="Amaze UI" />
-<link rel="stylesheet" href="resource/css/amazeui.min.css"/>
-<link rel="stylesheet" href="resource/css/admin.css">
-<script src="resource/js/jquery.min.js"></script>
-<script src="resource/js/app.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resource/css/amazeui.min.css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resource/css/admin.css">
+<script src="${pageContext.request.contextPath}/resource/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resource/js/app.js"></script>
 </head>
 <body>
 <!--[if lte IE 9]><p class="browsehappy">升级你的浏览器吧！ <a href="http://se.360.cn/" target="_blank">升级浏览器</a>以获得更好的体验！</p><![endif]-->
@@ -37,7 +37,7 @@
 
 <body>
 <header class="am-topbar admin-header">
-  <div class="am-topbar-brand"><img src="resource/i/logo.png"></div>
+  <div class="am-topbar-brand"><img src="${pageContext.request.contextPath}/resource/i/logo.png"></div>
 
   <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
     <ul class="am-nav am-nav-pills am-topbar-nav admin-header-list">
@@ -105,51 +105,34 @@
 <div class="nav-navicon admin-main admin-sidebar">
     
     
-    <div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"> 欢迎系统管理员：清风抚雪</div>
+    <div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"> 欢迎系统管理员：超哥哥</div>
     <div class="sideMenu">
       <h3 class="am-icon-flag"><em></em> <a href="#">商品管理</a></h3>
       <ul>
-        <li><a href="">商品列表</a></li>
-        <li class="func" dataType='html' dataLink='msn.htm' iconImg='images/msn.gif'>添加新商品</li>
-        <li>商品分类</li>
-        <li>用户评论</li>
-        <li>商品回收站</li>
-        <li>库存管理 </li>
+        <li><a href="${pageContext.request.contextPath}/article/toArticleList">商品列表</a></li>
+        <li><a href="${pageContext.request.contextPath}/article/toAddNewArticle">添加新商品</li>
+        <li><a href="${pageContext.request.contextPath}/article/toArticleClassify">商品分类</li> 
+        <li><a href="${pageContext.request.contextPath}/article/toStockControl"></a>库存管理 </li>
       </ul>
       <h3 class="am-icon-cart-plus"><em></em> <a href="#"> 订单管理</a></h3>
       <ul>
-        <li>订单列表</li>
-        <li>合并订单</li>
-        <li>订单打印</li>
+        <li><a href="${pageContext.request.contextPath}/Orders/orderList">订单列表</a></li>
         <li>添加订单</li>
         <li>发货单列表</li>
-        <li>换货单列表</li>
       </ul>
       <h3 class="am-icon-users"><em></em> <a href="#">会员管理</a></h3>
       <ul>
         <li>会员列表 </li>
-        <li>未激活会员</li>
-        <li>团队系谱图</li>
-        <li>会员推荐图</li>
-        <li>推荐列表</li>
+        <li>会员积分修改</li>
+        <li>会员积分分布图</li>
+        <li>会员等级分布图</li>
       </ul>
-      <h3 class="am-icon-volume-up"><em></em> <a href="#">信息通知</a></h3>
-      <ul>
-        <li>站内消息 /留言 </li>
-        <li>短信</li>
-        <li>邮件</li>
-        <li>微信</li>
-        <li>客服</li>
-      </ul>
+      
       <h3 class="am-icon-gears"><em></em> <a href="#">系统设置</a></h3>
       <ul>
         <li>数据备份</li>
-        <li>邮件/短信管理</li>
-        <li>上传/下载</li>
         <li>权限</li>
         <li>网站设置</li>
-        <li>第三方支付</li>
-        <li>提现 /转账 出入账汇率</li>
         <li>平台设置</li>
         <li>声音文件</li>
       </ul>
@@ -200,32 +183,48 @@
 <div class="admin-biaogelist">
 	
     <div class="listbiaoti am-cf">
-      <ul class="am-icon-flag on"> 栏目名称</ul>
+      <ul class="am-icon-flag on"> 添加新商品</ul>
       
-      <dl class="am-icon-home" style="float: right;"> 当前位置： 首页 > <a href="#">商品列表</a></dl>
+      <dl class="am-icon-home" style="float: right;"> 当前位置： 首页 > <a href="#">添加新商品</a></dl>
 
       
       
     </div>
 	
     <div class="fbneirong">
-      <form class="am-form">
+      <form class="am-form" action="addArticle" method="post">
         <div class="am-form-group am-cf">
-          <div class="zuo">标题：</div>
+          <div class="zuo">商品编号</div>
           <div class="you">
-            <input type="email" class="am-input-sm" id="doc-ipt-email-1" placeholder="请输入标题">
+            <input type="text" name="id" class="am-input-sm" id="doc-ipt-email-1" placeholder="请输入商品编号">
           </div>
         </div>
         <div class="am-form-group am-cf">
-          <div class="zuo">关键词：</div>
+          <div class="zuo">商品名称</div>
           <div class="you">
-            <input type="password" class="am-input-sm" id="doc-ipt-pwd-1" placeholder="请输入关键词">
+            <input type="text" name="name" class="am-input-sm" id="doc-ipt-pwd-1" placeholder="请输入商品名称">
           </div>
         </div>
+        
+         <div class="am-form-group am-cf">
+          <div class="zuo">商品数量</div>
+          <div class="you">
+            <input type="text" name="number" class="am-input-sm" id="doc-ipt-pwd-1" placeholder="请输入商品数量">
+          </div>
+        </div>
+        
+        <div class="am-form-group am-cf">
+          <div class="zuo">商品类型</div>
+          <div class="you">
+            <input type="text" name="typeId" class="am-input-sm" id="doc-ipt-pwd-1" placeholder="请输入商品类型">
+          </div>
+        </div>
+    
+        
         <div class="am-form-group am-cf">
           <div class="zuo">描述：</div>
           <div class="you">
-            <textarea class="" rows="2" id="doc-ta-1"></textarea>
+            <textarea name="describes" class="" rows="2" id="doc-ta-1"></textarea>
           </div>
         </div>
         <div class="am-form-group am-cf">
@@ -241,39 +240,14 @@
           </div>
         </div>
         
-        
-        <div class="am-form-group am-cf">
-          <div class="zuo">内容：</div>
-          <div class="you">
-            <textarea class="" rows="2" id="doc-ta-1"></textarea>
-          </div>
-        </div>
-        
-        <div class="am-form-group am-cf">
-          <div class="zuo">其他信息：</div>
-          <div class="you">
-            <textarea class="" rows="2" id="doc-ta-1"></textarea>
-          </div>
-        </div>
+       
         
         
-        <div class="am-form-group am-cf">
-        <div class="zuo">推荐：</div>
-        <div class="you" style="margin-top: 5px;">
-          <label class="am-checkbox-inline">
-            <input type="checkbox" value="option1">
-            选我 </label>
-          <label class="am-checkbox-inline">
-            <input type="checkbox" value="option2">
-            同时可以选我 </label>
-          <label class="am-checkbox-inline">
-            <input type="checkbox" value="option3">
-            还可以选我 </label>
-            </div>
-        </div>
+        
         <div class="am-form-group am-cf">
           <div class="you" style="margin-left: 11%;">
-              <button type="submit" class="am-btn am-btn-success am-radius">发布并关闭窗口</button>&nbsp;  &raquo; &nbsp; <button type="submit" class="am-btn am-btn-secondary am-radius">发布并继续发布</button>
+              <button type="submit" class="am-btn am-btn-success am-radius">发布并关闭窗口</button>&nbsp;  &raquo; &nbsp; 
+              <button type="submit" class="am-btn am-btn-secondary am-radius">发布并继续发布</button>
 
           </div>
         </div>
@@ -284,7 +258,7 @@
  
  <div class="foods">
   <ul>
-    版权所有@2015. 模板收集自 <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> -  More Templates<a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
+   	超哥哥版权所有 <a href="http://www.ttimor.cn/" target="_blank" title="谭提莫">会员积分管理系统</a> 
   </ul>
   <dl>
     <a href="" title="返回头部" class="am-icon-btn am-icon-arrow-up"></a>
@@ -312,7 +286,7 @@
 <![endif]--> 
 
 <!--[if (gte IE 9)|!(IE)]><!--> 
-<script src="resource/js/amazeui.min.js"></script>
+<script src="${pageContext.request.contextPath}/resource/js/amazeui.min.js"></script>
 <!--<![endif]-->
 
 

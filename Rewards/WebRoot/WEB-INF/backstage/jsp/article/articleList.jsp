@@ -5,7 +5,7 @@
       + request.getServerName() + ":" + request.getServerPort()
       + path + "/";
 %>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html class="no-js">
 <head>
@@ -17,13 +17,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="renderer" content="webkit">
 <meta http-equiv="Cache-Control" content="no-siteapp" />
-<link rel="icon" type="image/png" href="resource/i/favicon.png">
-<link rel="apple-touch-icon-precomposed" href="resource/i/app-icon72x72@2x.png">
+<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/resource/i/favicon.png">
+<link rel="apple-touch-icon-precomposed" href="${pageContext.request.contextPath}/resource/i/app-icon72x72@2x.png">
 <meta name="apple-mobile-web-app-title" content="Amaze UI" />
-<link rel="stylesheet" href="resource/css/amazeui.min.css"/>
-<link rel="stylesheet" href="resource/css/admin.css">
-<script src="resource/js/jquery.min.js"></script>
-<script src="resource/js/app.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resource/css/amazeui.min.css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resource/css/admin.css">
+<script src="${pageContext.request.contextPath}/resource/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resource/js/app.js"></script>
 </head>
 <body>
 <!--[if lte IE 9]><p class="browsehappy">升级你的浏览器吧！ <a href="http://se.360.cn/" target="_blank">升级浏览器</a>以获得更好的体验！</p><![endif]-->
@@ -37,7 +37,7 @@
 
 <body>
 <header class="am-topbar admin-header">
-  <div class="am-topbar-brand"><img src="resource/i/logo.png"></div>
+  <div class="am-topbar-brand"><img src="${pageContext.request.contextPath}/resource/i/logo.png"></div>
 
   <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
     <ul class="am-nav am-nav-pills am-topbar-nav admin-header-list">
@@ -105,51 +105,34 @@
 <div class="nav-navicon admin-main admin-sidebar">
     
     
-    <div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"> 欢迎系统管理员：清风抚雪</div>
+     <div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"> 欢迎系统管理员：超哥哥</div>
     <div class="sideMenu">
       <h3 class="am-icon-flag"><em></em> <a href="#">商品管理</a></h3>
       <ul>
-        <li><a href="">商品列表</a></li>
-        <li class="func" dataType='html' dataLink='msn.htm' iconImg='images/msn.gif'>添加新商品</li>
-        <li>商品分类</li>
-        <li>用户评论</li>
-        <li>商品回收站</li>
-        <li>库存管理 </li>
+        <li><a href="${pageContext.request.contextPath}/article/toArticleList">商品列表</a></li>
+        <li><a href="${pageContext.request.contextPath}/article/toAddNewArticle">添加新商品</li>
+        <li><a href="${pageContext.request.contextPath}/article/toArticleClassify">商品分类</li> 
+        <li><a href="${pageContext.request.contextPath}/article/toStockControl"></a>库存管理 </li>
       </ul>
       <h3 class="am-icon-cart-plus"><em></em> <a href="#"> 订单管理</a></h3>
       <ul>
-        <li>订单列表</li>
-        <li>合并订单</li>
-        <li>订单打印</li>
+        <li><a href="${pageContext.request.contextPath}/Orders/orderList">订单列表</a></li>
         <li>添加订单</li>
         <li>发货单列表</li>
-        <li>换货单列表</li>
       </ul>
       <h3 class="am-icon-users"><em></em> <a href="#">会员管理</a></h3>
       <ul>
         <li>会员列表 </li>
-        <li>未激活会员</li>
-        <li>团队系谱图</li>
-        <li>会员推荐图</li>
-        <li>推荐列表</li>
+        <li>会员积分修改</li>
+        <li>会员积分分布图</li>
+        <li>会员等级分布图</li>
       </ul>
-      <h3 class="am-icon-volume-up"><em></em> <a href="#">信息通知</a></h3>
-      <ul>
-        <li>站内消息 /留言 </li>
-        <li>短信</li>
-        <li>邮件</li>
-        <li>微信</li>
-        <li>客服</li>
-      </ul>
+      
       <h3 class="am-icon-gears"><em></em> <a href="#">系统设置</a></h3>
       <ul>
         <li>数据备份</li>
-        <li>邮件/短信管理</li>
-        <li>上传/下载</li>
         <li>权限</li>
         <li>网站设置</li>
-        <li>第三方支付</li>
-        <li>提现 /转账 出入账汇率</li>
         <li>平台设置</li>
         <li>声音文件</li>
       </ul>
@@ -257,50 +240,45 @@
             <thead>
               <tr class="am-success">
                 <th class="table-check"><input type="checkbox" /></th>
-                <th class="table-id">排序</th>
+                <th class="table-id">编号</th>
                 <th class="table-id">ID</th>
-                <th class="table-title">标题</th>
+                <th class="table-title">商品名称</th>
                 <th class="table-type">类别</th>
-                <th class="table-author am-hide-sm-only">上架/下架 <i class="am-icon-check am-text-warning"></i> <i class="am-icon-close am-text-primary"></i></th>
-                <th class="table-date am-hide-sm-only">修改日期</th>
+                <th class="table-author am-hide-sm-only">商品描述</th>
+                <th class="table-date am-hide-sm-only">兑换所需积分</th>
+                <th class="table-date am-hide-sm-only">剩余数量</th>
                 <th width="163px" class="table-set">操作</th>
               </tr>
             </thead>
+            
+            <!-- 商品列表， 用c:foreach循环 -->
             <tbody>
+             <!-- items就是取resquest里面中的对象，然后var就是取一个别名，然后遍历出来 -->
+           <c:forEach items="${list}" var="i">
               <tr>
                 <td><input type="checkbox" /></td>
                 <td><input type="text" class="am-form-field am-radius am-input-sm"/></td>
-                <td>14</td>
-                <td><a href="#">Business management</a></td>
-                <td>default</td>
-                <td class="am-hide-sm-only"><i class="am-icon-check am-text-warning"></i></td>
-                <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
+                <td>${i.id}</td>
+                <td>${i.name}</td>
+                <td>${i.typeId}</td>
+                <td>${i.describes}</td>
+                <td>${i.exchangeScore}</td>
+                <td>${i.number}</td>
                 <td><div class="am-btn-toolbar">
                     <div class="am-btn-group am-btn-group-xs">
+                    <!-- 查看商品详情 -->
                       <button class="am-btn am-btn-default am-btn-xs am-text-success am-round"><span class="am-icon-search"></span> </button>
-                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary am-round"><span class="am-icon-pencil-square-o"></span></button>
-                      <button class="am-btn am-btn-default am-btn-xs am-text-warning  am-round"><span class="am-icon-copy"></span></button>
-                      <button class="am-btn am-btn-default am-btn-xs am-text-danger am-round"><span class="am-icon-trash-o"></span></button>
+                    <!-- 修改商品信息 --> 
+                      <a class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" href="${pageContext.request.contextPath}/article/findArticleById?id=${i.id}" ><span class="am-icon-pencil-square-o"></span></a>
+                    <!-- 删除商品 --> 
+                      <a class="am-btn am-btn-default am-btn-xs am-text-danger am-round" href="${pageContext.request.contextPath}/article/deleteArticleById?id=${i.id}"  ><span class="am-icon-trash-o" onclick="deleteArticle()"></span></a>
                     </div>
                   </div></td>
               </tr>
-              <tr>
-                <td><input type="checkbox" /></td>
-                <td><input type="text" class="am-form-field am-radius am-input-sm"/></td>
-                <td>15</td>
-                <td><a href="#">Business management</a></td>
-                <td>default</td>
-                <td class="am-hide-sm-only"><i class="am-icon-close am-text-primary"></i></td>
-                <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
-                <td><div class="am-btn-toolbar">
-                    <div class="am-btn-group am-btn-group-xs">
-                      <button class="am-btn am-btn-default am-btn-xs am-text-success am-round"><span class="am-icon-search"></span> </button>
-                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary am-round"><span class="am-icon-pencil-square-o"></span></button>
-                      <button class="am-btn am-btn-default am-btn-xs am-text-warning  am-round"><span class="am-icon-copy"></span></button>
-                      <button class="am-btn am-btn-default am-btn-xs am-text-danger am-round"><span class="am-icon-trash-o"></span></button>
-                    </div>
-                  </div></td>
-              </tr>
+              </c:forEach>
+              
+              
+              
             </tbody>
           </table>
           
@@ -367,7 +345,17 @@
 <!--[if (gte IE 9)|!(IE)]><!--> 
 <script src="resource/js/amazeui.min.js"></script>
 <!--<![endif]-->
+<script type="text/javascript">
+	function deleteArticle(){
+		var msg = "您真的确定要删除吗？\n\n请确认！";
+		if (confirm(msg)==true){
+		return true;
+		}else{
+		return false;
+		}
+	}
 
+</script>
 
 
 </body>
