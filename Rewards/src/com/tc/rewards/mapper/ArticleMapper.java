@@ -15,5 +15,6 @@ public interface ArticleMapper {
 	public List<Article> findAllArticle();
 	//修改商品信息
 	public void updateArticleById(Article article);
-
+	//根据商品ID查询商品类型
+	public void findTypeById(String id);
 }

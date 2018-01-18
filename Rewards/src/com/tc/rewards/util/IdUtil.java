@@ -11,7 +11,7 @@ import sun.misc.BASE64Encoder;
 /**
  * 
  * @author TC1016
- *
+ *  对密码进行MD5加密
  */
 public class IdUtil {
 	//获得一个随机的ID

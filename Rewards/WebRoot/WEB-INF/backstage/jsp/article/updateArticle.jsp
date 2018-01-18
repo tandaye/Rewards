@@ -222,9 +222,12 @@
         <div class="am-form-group am-cf">
           <div class="zuo">商品类型</div>
           <div class="you">
-            <input type="text" name="typeId" class="am-input-sm" 
+         <select name="typeId" id="typeId">
+           <option value="">直接选择或搜索选择</option>
+          </select>
+            <%-- <input type="text" name="typeId" class="am-input-sm" 
             value="${article2.typeId }"
-            id="doc-ipt-pwd-1" placeholder="请输入商品类型">
+            id="doc-ipt-pwd-1" placeholder="请输入商品类型"> --%>
           </div>
         </div>
     
@@ -302,17 +305,33 @@
 <!--<![endif]-->
 
 	<!-- ajax请求页面 -->
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 	$.ajax({
+		//通过get方法
+		type:"get",
+		//跳转到controller中的findAllTpye方法
 		url:'findAllType',
+		//查询到数据封装到data当中
 		success:function(data){
-			alert(data);
-			
-		}		
+			//把json对象转换为json字符串
+			data=eval(data);
+			//foreach把查询的结果遍历出来，用字符串拼接，然后存在str中，用append的方法添加到typeID的select中
+			for(item in data){
+				var str="<option value="+"\""+data[item].id+"\">"+data[item].name+"</option>";
+				$('#typeId').append(str);
+			/* 	var id = item.id;
+				var name = item.name;
+				console.log(id);
+				
+				var option = '<option value="' +  id + '>' +  name+ '</option>';
+				$('#typeId').append(option); */
+				
+			}
+	 	}		
 	});
 
 
-</script> -->
+</script> 
 
 
 </body>

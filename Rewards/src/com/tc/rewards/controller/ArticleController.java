@@ -10,7 +10,12 @@ import java.util.List;
 
 
 
+
+
+
 import javax.servlet.http.HttpServletRequest; 
+
+import net.sf.json.JSONArray;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -18,6 +23,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.sun.mail.iap.Response;
 import com.tc.rewards.pojo.Article;
@@ -63,7 +69,7 @@ public class ArticleController {
 	
 	
 	@RequestMapping("/addArticle")
-	public String addArticle(HttpServletRequest request,Article articleList){
+	public String addArticle(HttpServletRequest request,Article articleList,MultipartFile artImages){
 		
 		articleService.insertArticleById(articleList);
 		request.setAttribute("articleList", articleList);
@@ -71,7 +77,10 @@ public class ArticleController {
 		List<Article> articlesList= articleService.findAllArticle();
 		request.setAttribute("list", articlesList);
 		
-		System.err.println(articleList+"!!!!!!!!!!");
+		//System.err.println(articleList+"!!!!!!!!!!");
+		
+		//上传图片
+		
 		return "backstage/jsp/article/articleList";
 	 }
 	
@@ -114,12 +123,12 @@ public class ArticleController {
 	//查询出所有Type表中的数据
 	@RequestMapping("/findAllType")
 	@ResponseBody
-	public List<Type> findAllType(){
+	public String findAllType(){
 		List<Type> type=typeService.findAllType();
-		return type ;
-		
+		JSONArray jsonArray = new JSONArray();
+		jsonArray.addAll(type);
+		return jsonArray.toString() ;
 	}
-	
 	//根据ID删除商品信息
 	@RequestMapping("/deleteArticleById")
 	public String deleteArticleById(String id){

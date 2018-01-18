@@ -17,4 +17,7 @@ public interface ArticleService {
 
 	//修改商品信息
 		public void updateArticleById(Article article);
+		
+	//根据商品ID查询商品类型
+	public void findTypeById(String id);
 }

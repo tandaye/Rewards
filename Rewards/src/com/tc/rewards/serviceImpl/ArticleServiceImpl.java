@@ -52,4 +52,12 @@ public class ArticleServiceImpl implements ArticleService {
 		articleMapper.updateArticleById(article);
 	}
 
+
+	//根据商品id查询商品类型
+	@Override
+	public void findTypeById(String id) {
+		articleMapper.findTypeById(id);
+		
+	}
+
 }

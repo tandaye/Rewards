@@ -41,6 +41,13 @@
 		exchangeScore=#{exchangeScore}
 		where id = #{id}
 	</select>
+	
+	<!-- 根据id查询商品类型 -->
+	<select id="findTypeById" parameterType="String">
+	SELECT a.id,t.name
+	from article a INNER JOIN type t on a.type_id = t.id
+	where a.id="2"
+	</select>
 
 
 </mapper>
