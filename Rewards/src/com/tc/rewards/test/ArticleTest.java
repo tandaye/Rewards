@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 
+import com.tc.rewards.expand.ArticleExpand;
 import com.tc.rewards.mapper.ArticleMapper;
 import com.tc.rewards.mapper.OrdersMapper;
 import com.tc.rewards.pojo.Article;
@@ -68,6 +69,23 @@ public class ArticleTest {
 		for (Article article : articlesList) {
 			System.err.println(article.toString());
 		}
-		
 	}
+	
+	@Test
+	public void findArticleExpand(){
+		List<ArticleExpand> articlesList = articleMapper.findArticleExpand();
+		for (ArticleExpand articleExpand : articlesList) {
+			System.err.println(articleExpand.toString());
+		}
+	}
+	
+	/*@Test
+	public void findTypeByOption(){
+		
+		List<ArticleExpand> articleList = articleMapper.findTypeByOption(article);
+		
+		for (ArticleExpand articleExpand : articleList) {
+			System.out.println(articleExpand.toString());
+		}
+	}*/
 }

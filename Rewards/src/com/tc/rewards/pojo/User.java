@@ -5,7 +5,7 @@ public class User {
 	private String id;
 	private String name;
 	private String age; 
-	private String sex;
+	private String tel;
 	private String password; 
 	private String grageId;
 	private String roleId;
@@ -50,11 +50,11 @@ public class User {
 	public void setAge(String age) {
 		this.age = age;
 	}
-	public String getSex() {
-		return sex;
+	public String getTel() {
+		return tel;
 	}
-	public void setSex(String sex) {
-		this.sex = sex;
+	public void setTel(String tel) {
+		this.tel = tel;
 	}
 	public String getPassword() {
 		return password;
@@ -77,7 +77,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", age=" + age + ", sex="
-				+ sex + ", password=" + password + ", grageId=" + grageId
+				+ tel + ", password=" + password + ", grageId=" + grageId
 				+ ", roleId=" + roleId + ", addressId=" + addressId
 				+ ", scoreId=" + scoreId + "]";
 	}

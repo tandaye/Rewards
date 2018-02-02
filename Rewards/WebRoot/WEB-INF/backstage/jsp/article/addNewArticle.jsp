@@ -11,7 +11,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Amaze UI Admin index Examples</title>
+<title>积分管理系统-添加新商品</title>
 <meta name="description" content="这是一个 index 页面">
 <meta name="keywords" content="index">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -24,6 +24,8 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resource/css/admin.css">
 <script src="${pageContext.request.contextPath}/resource/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/resource/js/app.js"></script>
+<script src="${pageContext.request.contextPath}/resource/js/angular.min.js"></script>
+<script type="text/javascript"></script>
 </head>
 <body>
 <!--[if lte IE 9]><p class="browsehappy">升级你的浏览器吧！ <a href="http://se.360.cn/" target="_blank">升级浏览器</a>以获得更好的体验！</p><![endif]-->
@@ -191,32 +193,38 @@
       
     </div>
 	
-    <div class="fbneirong">
-      <form class="am-form" action="addArticle" method="post">
+    <div class="fbneirong" ng-app="article" ng-controller="ctrl">
+      <form class="am-form"  action="addArticle" method="post" enctype="multipart/form-data" onsubmit="return check()">
         <div class="am-form-group am-cf">
-          <div class="zuo">商品编号</div>
+          <div class="zuo">商品兑换积分</div>
           <div class="you">
-            <input type="text" name="id" class="am-input-sm" id="doc-ipt-email-1" placeholder="请输入商品编号">
+            <input type="text" name="exchangeScore" class="am-input-sm" id="doc-ipt-email-1" placeholder="请输入商品兑换积分" >
           </div>
         </div>
         <div class="am-form-group am-cf">
           <div class="zuo">商品名称</div>
           <div class="you">
-            <input type="text" name="name" class="am-input-sm" id="doc-ipt-pwd-1" placeholder="请输入商品名称">
+            <input type="text" onchange="check1()" id="name" name="name" class="am-input-sm" id="doc-ipt-pwd-1" placeholder="请输入商品名称">
+          	<span id="check1"></span>
           </div>
         </div>
         
          <div class="am-form-group am-cf">
           <div class="zuo">商品数量</div>
           <div class="you">
-            <input type="text" name="number" class="am-input-sm" id="doc-ipt-pwd-1" placeholder="请输入商品数量">
+            <input type="text" onchange="check2()" id="number" name="number" class="am-input-sm" id="doc-ipt-pwd-1" placeholder="请输入商品数量" onkeyup="value=value.replace(/[^\d]/g,'')">
+          	<span id="check2" style="color: red;width: 100px;height: 100px;"></span>
           </div>
         </div>
         
         <div class="am-form-group am-cf">
           <div class="zuo">商品类型</div>
           <div class="you">
-            <input type="text" name="typeId" class="am-input-sm" id="doc-ipt-pwd-1" placeholder="请输入商品类型">
+           <!--  <input type="text" name="typeId" class="am-input-sm" id="doc-ipt-pwd-1" placeholder="请输入商品类型">  -->
+          <select id="typeId" name="typeId" onchange="check3()">
+             <option>请选择商品的类型</option>
+          </select> 
+          <span id="check3"></span>
           </div>
         </div>
     
@@ -226,28 +234,31 @@
           <div class="you">
             <textarea name="describes" class="" rows="2" id="doc-ta-1"></textarea>
           </div>
+          <span id="check4"></span>
         </div>
-        <div class="am-form-group am-cf">
-          <div class="zuo">缩略图：</div>
-          <div class="you"><input type="file" id="doc-ipt-file-1"> </div>
-        </div>
+     
         
         <div class="am-form-group am-cf">
           <div class="zuo">产品图片：</div>
           <div class="you" style="height: 45px;">
-            <input type="file" id="doc-ipt-file-1">
-            <p class="am-form-help">请选择要上传的文件...</p>
+        <input type="file" id="image" name="articleImg" onchange="check4()"> 
+        <span id="check5"></span>
+        
+            <!-- <p class="am-form-help">请选择要上传的文件...</p> -->
           </div>
         </div>
-        
+        	<script>
+
+
+</script>
        
         
         
         
         <div class="am-form-group am-cf">
           <div class="you" style="margin-left: 11%;">
-              <button type="submit" class="am-btn am-btn-success am-radius">发布并关闭窗口</button>&nbsp;  &raquo; &nbsp; 
-              <button type="submit" class="am-btn am-btn-secondary am-radius">发布并继续发布</button>
+              <button type="submit" class="am-btn am-btn-success am-radius">发布并关闭窗口</button>&nbsp; &nbsp; 
+              
 
           </div>
         </div>
@@ -288,6 +299,115 @@
 <!--[if (gte IE 9)|!(IE)]><!--> 
 <script src="${pageContext.request.contextPath}/resource/js/amazeui.min.js"></script>
 <!--<![endif]-->
+<script type="text/javascript">
+$.ajax({
+	//通过get方法
+	type:"get",
+	//跳转到controller中的findAllTpye方法
+	url:'findAllType',
+	//查询到数据封装到data当中
+	success:function(data){
+		//把json对象转换为json字符串
+		data=eval(data);
+		//foreach把查询的结果遍历出来，用字符串拼接，然后存在str中，用append的方法添加到typeID的select中
+		for(item in data){
+			var str="<option value="+"\""+data[item].id+"\">"+data[item].name+"</option>";
+			$('#typeId').append(str);
+		/* 	var id = item.id;
+			var name = item.name;
+			console.log(id);
+			
+			var option = '<option value="' +  id + '>' +  name+ '</option>';
+			$('#typeId').append(option); */
+			
+		}
+ 	}		
+});
+
+
+
+</script>
+
+<script>
+	var app = angular.module('ng-app',[]);
+	app.controller = ('ctrl',function($scope){
+		$scope.number
+		
+	});
+
+
+</script>
+
+
+
+<script type="text/javascript">
+
+	function check() {  
+		//判断商品名称
+	    var check = false;  
+	    var articleName = document.getElementById("name").value;  
+	    if (articleName=null) {  
+	        document.getElementById("check1").innerHTML = " × 请输入商品名称";  
+	        check = false;  
+	    } else {  
+	        document.getElementById("check1").innerHTML = "  √";  
+	        check = true;  
+	    }  
+	    return check;  
+	}  
+	//判断商品数量
+	function check2() {  
+	    var check = false;  
+	    var number = document.getElementById("number").value;  
+	    if (number=null) {  
+	        document.getElementById("check2").innerHTML = " × 请输入商品数量";  
+	        check = false;  
+	    } else if (number.length>4) {
+	    	document.getElementById("check2").innerHTML = " × 商品数量太多，请重新输入";  
+	        check = false; 
+		}
+	     else {  
+	        document.getElementById("check2").innerHTML = "  √";  
+	        check = true;  
+	    }  
+	    return check;  
+	}  
+	//判断是否选择商品类型
+	function check3() {  
+	    var check = false;  
+	    var typeId = document.getElementById("typeId").value;  
+	    if (typeId = null) {  
+	        document.getElementById("check3").innerHTML = "  × 请选择商品类型";  
+	        check = false;  
+	    } else {  
+	        document.getElementById("check3").innerHTML = "  √";  
+	        check = true;  
+	    }  
+	    return check;  
+	}  
+	//判断是否上传图片
+	function check4() {  
+	    var check = false  
+	    var image = document.getElementById("image").value;
+	    if (image=null) {  
+	        document.getElementById("check4").innerHTML = "  × 请添加商品图片";  
+	        check = false;  
+	    } else {  
+	        document.getElementById("check4").innerHTML = "";  
+	        check = true;  
+	  
+	    }  
+	    return check;  
+	  
+	}  
+	function check() {  
+	    var check = check1() && check2() && check3() && check4();  
+	    return check;  
+	  
+	}  	
+
+</script>
+
 
 
 

@@ -67,11 +67,7 @@
 							id="password" placeholder="请输入密码">
 
 					</div>
-					<div class="am-form-group tpl-login-remember-me">
-						<input id="remember-me" type="checkbox">
-						<label for="remember-me"> 记住密码 </label>
-
-					</div>
+		 
 
 					<div class="am-form-group">
 						<input type="submit"

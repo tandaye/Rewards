@@ -1,2 +1,4 @@
 eclipse.preferences.version=1
+encoding//WebRoot/WEB-INF/frontstage/checkout.jsp=UTF-8
+encoding//WebRoot/WEB-INF/frontstage/products.jsp=UTF-8
 encoding//src/com/tc/rewards/util/IdUtil.java=UTF-8

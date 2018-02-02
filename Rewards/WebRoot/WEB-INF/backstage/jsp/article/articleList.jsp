@@ -11,7 +11,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Amaze UI Admin index Examples</title>
+<title>积分管理系统-商品列表</title>
 <meta name="description" content="这是一个 index 页面">
 <meta name="keywords" content="index">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -110,19 +110,19 @@
       <h3 class="am-icon-flag"><em></em> <a href="#">商品管理</a></h3>
       <ul>
         <li><a href="${pageContext.request.contextPath}/article/toArticleList">商品列表</a></li>
-        <li><a href="${pageContext.request.contextPath}/article/toAddNewArticle">添加新商品</li>
-        <li><a href="${pageContext.request.contextPath}/article/toArticleClassify">商品分类</li> 
-        <li><a href="${pageContext.request.contextPath}/article/toStockControl"></a>库存管理 </li>
+        <li><a href="${pageContext.request.contextPath}/article/toAddNewArticle">添加新商品</a></li>
+        <li><a href="${pageContext.request.contextPath}/article/toArticleClassify">商品分类</a></li> 
+        <li><a href="${pageContext.request.contextPath}/article/toStockControl">库存管理</a></li>
       </ul>
       <h3 class="am-icon-cart-plus"><em></em> <a href="#"> 订单管理</a></h3>
       <ul>
         <li><a href="${pageContext.request.contextPath}/Orders/orderList">订单列表</a></li>
-        <li>添加订单</li>
-        <li>发货单列表</li>
+        <li><a href=""> 添加订单</a></li>
+        <li><a href=""> 发货单列表</a></li>
       </ul>
       <h3 class="am-icon-users"><em></em> <a href="#">会员管理</a></h3>
       <ul>
-        <li>会员列表 </li>
+        <li><a href="${pageContext.request.contextPath}/user/findAllMember">会员列表</a> </li>
         <li>会员积分修改</li>
         <li>会员积分分布图</li>
         <li>会员等级分布图</li>
@@ -188,50 +188,43 @@
       <dl class="am-icon-home" style="float: right;"> 当前位置： 首页 > <a href="#">商品列表</a></dl>
       
       <dl>
-        <button type="button" class="am-btn am-btn-danger am-round am-btn-xs am-icon-plus"> 添加产品</button>
+        <a href="${pageContext.request.contextPath}/article/toAddNewArticle"><button type="button" class="am-btn am-btn-danger am-round am-btn-xs am-icon-plus"> 添加产品</button></a>
       </dl>
       
       
     </div>
 	
 	<div class="am-btn-toolbars am-btn-toolbar am-kg am-cf">
+	<form action="">
+
   <ul>
     <li>
       <div class="am-btn-group am-btn-group-xs">
-        <select data-am-selected="{btnWidth: 90, btnSize: 'sm', btnStyle: 'default'}">
-          <option value="b">产品分类</option>
-          <option value="o">下架</option>
-        </select>
+       
       </div>
     </li>
     <li>
       <div class="am-btn-group am-btn-group-xs">
-      <select data-am-selected="{btnWidth: 90, btnSize: 'sm', btnStyle: 'default'}">
-        <option value="b">产品分类</option>
-        <option value="o">下架</option>
-      </select>
+      
       </div>
     </li>
     <li style="margin-right: 0;">
-    	<span class="tubiao am-icon-calendar"></span>
-      <input type="text" class="am-form-field am-input-sm am-input-zm  am-icon-calendar" placeholder="开始日期" data-am-datepicker="{theme: 'success',}"  readonly/>
+    	<span ></span>
     </li>
        <li style="margin-left: -4px;">
-    	<span class="tubiao am-icon-calendar"></span>
-      <input type="text" class="am-form-field am-input-sm am-input-zm  am-icon-calendar" placeholder="开始日期" data-am-datepicker="{theme: 'success',}"  readonly/>
+    	<span  ></span>
     </li>
     
         <li style="margin-left: -10px;">
-      <div class="am-btn-group am-btn-group-xs">
-      <select data-am-selected="{btnWidth: 90, btnSize: 'sm', btnStyle: 'default'}">
+      <div >
+      <!-- <select data-am-selected="{btnWidth: 90, btnSize: 'sm', btnStyle: 'default'}">
         <option value="b">产品分类</option>
         <option value="o">下架</option>
       </select>
-      </div>
+      </div> -->
     </li>
-    <li><input type="text" class="am-form-field am-input-sm am-input-xm" placeholder="关键词搜索" /></li>
-    <li><button type="button" class="am-btn am-radius am-btn-xs am-btn-success" style="margin-top: -1px;">搜索</button></li>
   </ul>
+  </form>
 </div>
 
 
@@ -240,7 +233,6 @@
             <thead>
               <tr class="am-success">
                 <th class="table-check"><input type="checkbox" /></th>
-                <th class="table-id">编号</th>
                 <th class="table-id">ID</th>
                 <th class="table-title">商品名称</th>
                 <th class="table-type">类别</th>
@@ -254,13 +246,13 @@
             <!-- 商品列表， 用c:foreach循环 -->
             <tbody>
              <!-- items就是取resquest里面中的对象，然后var就是取一个别名，然后遍历出来 -->
+            
            <c:forEach items="${list}" var="i">
               <tr>
                 <td><input type="checkbox" /></td>
-                <td><input type="text" class="am-form-field am-radius am-input-sm"/></td>
                 <td>${i.id}</td>
                 <td>${i.name}</td>
-                <td>${i.typeId}</td>
+                <td>${i.tname}</td>
                 <td>${i.describes}</td>
                 <td>${i.exchangeScore}</td>
                 <td>${i.number}</td>
@@ -347,14 +339,35 @@
 <!--<![endif]-->
 <script type="text/javascript">
 	function deleteArticle(){
-		var msg = "您真的确定要删除吗？\n\n请确认！";
-		if (confirm(msg)==true){
-		return true;
-		}else{
-		return false;
-		}
+		 var flag = confirm("确定删除吗?");
+         if(flag){
+             alert("你点击了确定");
+             //进行后台处理,路径跳转
+             window.location.href="${pageContext.request.contextPath}/article/deleteArticleById?id=${i.id}";
+         }else{
+             alert("你点击了取消");
+         }
 	}
 
+</script>
+
+<script type="text/javascript">
+$.ajax({
+	//通过get方法
+	type:"get",
+	//跳转到controller中的findAllTpye方法
+	url:'findAllType',
+	//查询到数据封装到data当中
+	success:function(data){
+		//把json对象转换为json字符串
+		data=eval(data);
+		//foreach把查询的结果遍历出来，用字符串拼接，然后存在str中，用append的方法添加到typeID的select中
+		for(item in data){
+			var str="<option value="+"\""+data[item].id+"\">"+data[item].name+"</option>";
+			$('#typeId').append(str);
+		}
+ 	}		
+});
 </script>
 
 

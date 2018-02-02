@@ -1,9 +1,12 @@
 package com.tc.rewards.serviceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.tc.rewards.expand.UserExpand;
 import com.tc.rewards.mapper.UserMapper;
 import com.tc.rewards.pojo.User;
 import com.tc.rewards.service.UserService;
@@ -51,7 +54,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public User checkLogin(User user) {
 		User user2 =userMapper.findByName(user);
-		System.out.println(user2.toString()+"1111111111111111111111");
+		//System.out.println(user2.toString()+"1111111111111111111111");
 		//String psw =IdUtil.md5(user.getPassword());
 		
 		if(user2!=null && (user.getPassword()).equals(user2.getPassword())){
@@ -60,6 +63,12 @@ public class UserServiceImpl implements UserService{
 		}
 		
 		return null;
+	}
+
+	@Override
+	public List<UserExpand> findAllUsers() {
+		
+		return userMapper.findAllUsers();
 	}
 
 	

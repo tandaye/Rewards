@@ -2,32 +2,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tc.rewards.mapper.UserMapper">
-	<sql id="prop"> id,name,age,sex,password,grage_id grageId,role_id
+	<sql id="prop"> id,name,age,tel,password,grage_id grageId,role_id
 		roleId,address_id addressId,score_id scoreId,order_id orderId
 	</sql>
 
 
 	<!-- 根据用户id查询信息 -->
 	<select id="findUserById" parameterType="String" resultType="user">
-		select id,name,age,sex,password,grage_id grageId,role_id roleId
+		select id,name,age,tel,password,grage_id grageId,role_id roleId,
 		address_id addressId,score_id scoreId,order_id orderId
 		from user
-		where id=#{id}
+		where
+		id=#{id}
 	</select>
 
 	<!-- 增加用户 -->
 	<select id="insertUserById" parameterType="user">
 		insert into
-		user(id,name,age,sex,password,grage_id ,role_id,address_id,score_id,order_id)
-		values(#{id},#{name},#{age},#{sex},#{password},#{grageId},#{roleId},#{addressId},#{scoreId},#{orderId})
+		user(id,name,age,tel,password,grage_id
+		,role_id,address_id,score_id,order_id)
+		values(#{id},#{name},#{age},#{tel},#{password},#{grageId},#{roleId},#{addressId},#{scoreId},#{orderId})
 
 	</select>
 
 	<!-- 根据用户id删除用户 -->
-	<select id="deleteUserById" parameterType="String">
+	<delete id="deleteUserById" parameterType="String">
 		delete from user where
 		id=#{id}
-	</select>
+	</delete>
 
 	<select id="findByUserNameAndPassword" resultType="user">
 		select * from
@@ -40,9 +42,29 @@
 		FROM user WHERE name=#{name} and password=#{password}
 	</select>
 	<select id="findByName" parameterType="user" resultType="user">
-		select id,name,age,sex,password,grage_id grageId,role_id roleId,address_id
-					addressId,score_id scoreId,order_id orderId
-		from user where name=#{name}
+		select
+		id,name,age,tel,password,grage_id grageId,role_id roleId,address_id
+		addressId,score_id scoreId,order_id orderId
+		from user where
+		name=#{name}
+
+	</select>
+
+	<select id="findAllUsers" resultType="com.tc.rewards.expand.UserExpand">
+		SELECT
+		u.id,
+		u. NAME,
+		age,
+		tel,
+		PASSWORD,
+		grage_id grageId,
+		role_id roleId,
+		r.`name` rname,
+		g.`name` gname,
+		s.scoreNumber sNumber
+		FROM USER u INNER JOIN role r ON u.role_id = r.id
+		INNER JOIN grage g ON u.grage_id = g.id
+		INNER JOIN score s ON u.score_id =s.id
 
 	</select>
 

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.tc.rewards.expand.ArticleExpand;
 import com.tc.rewards.mapper.ArticleMapper;
 import com.tc.rewards.pojo.Article;
 import com.tc.rewards.service.ArticleService;
@@ -59,5 +60,25 @@ public class ArticleServiceImpl implements ArticleService {
 		articleMapper.findTypeById(id);
 		
 	}
+
+
+
+	@Override
+	public List<ArticleExpand> findArticleExpand() {
+		
+		return articleMapper.findArticleExpand();
+	}
+
+
+
+	@Override
+	public List<ArticleExpand> findTypeByOption(String typeId){
+		
+		return articleMapper.findTypeByOption(typeId);
+	}
+
+
+
+ 
 
 }

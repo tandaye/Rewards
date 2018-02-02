@@ -22,5 +22,14 @@ public class OrdersController {
 		
 	}
 	
+	@RequestMapping("/toOrder")
+	//跳转到订单页面
+	public String toOrder(){
+		
+		return "frontstage/checkout";
+	}
+	
+	
+	
 	
 }

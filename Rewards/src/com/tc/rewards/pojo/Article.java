@@ -1,9 +1,17 @@
 package com.tc.rewards.pojo;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class Article {
 	private String id;
 	private String name;
+/*	@Min(value=1 ,message="不能少于一件")
+	@Max(value=500,message="不能超过500件")*/
 	private String number;
+	/*@NotEmpty(message = "商品类型还没有选择呢！")*/
 	private String typeId;
 	private String exchangeId;
 	private String image;

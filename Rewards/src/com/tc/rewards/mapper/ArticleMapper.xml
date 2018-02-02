@@ -11,6 +11,9 @@
 	</select>
 
 	<select id="insertArticleById" parameterType="article">
+		<!-- <selectKey resultType="String" keyProperty="id" order="BEFORE">
+			select replace(uuid(),'-','') from dual
+		</selectKey> -->
 		insert into
 		article(id,name,number,type_id,exchange_id,image,describes,exchangeScore)
 		values(#{id},#{name},#{number},#{typeId},#{exchangeId},#{image},#{describes},#{exchangeScore})
@@ -28,7 +31,7 @@
 		from article
 	</select>
 
-	<select id="updateArticleById" parameterType="article">
+	<update id="updateArticleById" parameterType="article">
 		update article
 		set 
 		id=#{id},
@@ -40,14 +43,29 @@
 		describes=#{describes},
 		exchangeScore=#{exchangeScore}
 		where id = #{id}
-	</select>
+	</update>
 	
 	<!-- 根据id查询商品类型 -->
 	<select id="findTypeById" parameterType="String">
 	SELECT a.id,t.name
 	from article a INNER JOIN type t on a.type_id = t.id
-	where a.id="2"
+	where a.id=#{id}
 	</select>
-
+	
+	
+	<!--  根据ID查询article表中的内容和关联type表中的类型名-->
+    <select id="findArticleExpand" resultType="com.tc.rewards.expand.ArticleExpand">
+		select
+		a.id,a.name,number,type_id typeId,exchange_id exchangeId
+		,image,describes describes,exchangeScore,t.name tname
+		from  article a INNER JOIN type t on a.type_id = t.id
+	</select>
+	
+	<select id="findTypeByOption" resultType="com.tc.rewards.expand.ArticleExpand" parameterType="String">
+	select a.id,a.name,number,type_id typeId,exchange_id exchangeId
+		,image,describes describes,exchangeScore,t.name tname
+		from  article a INNER JOIN type t on a.type_id = t.id
+		where a.type_Id=#{typeId}
+	</select>
 
 </mapper>

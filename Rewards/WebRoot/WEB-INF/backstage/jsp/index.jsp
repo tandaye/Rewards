@@ -10,7 +10,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Amaze UI Admin index Examples</title>
+<title>欢迎登陆会员积分管理系统 - 已登录</title>
 <meta name="description" content="这是一个 index 页面">
 <meta name="keywords" content="index">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -98,7 +98,7 @@
 <div class="nav-navicon admin-main admin-sidebar">
     
     
-    <div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"> 欢迎系统管理员：清风抚雪</div>
+    <div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"> 欢迎系统管理员：${user.name}</div>
     <div class="sideMenu">
       <h3 class="am-icon-flag"><em></em> <a href="#">商品管理</a></h3>
       <ul>
@@ -109,13 +109,13 @@
       </ul>
       <h3 class="am-icon-cart-plus"><em></em> <a href="#"> 订单管理</a></h3>
       <ul>
-        <li><a href="${pageContext.request.contextPath}/order/toOrderList">订单列表</li>orderList
+        <li><a href="${pageContext.request.contextPath}/order/toOrderList">订单列表</a></li>orderList
         <li>添加订单</li>
         <li>发货单列表</li>
       </ul>
       <h3 class="am-icon-users"><em></em> <a href="#">会员管理</a></h3>
       <ul>
-        <li>会员列表 </li>
+        <li><a href="${pageContext.request.contextPath}/user/findAllMember">会员列表 </a></li>
         <li>会员积分修改</li>
         <li>会员积分分布图</li>
         <li>会员等级分布图</li>
@@ -157,8 +157,8 @@
 	
 		<div class="daohang">
 			<ul>
-				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs"> 首页 </li>
-				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">帮助中心<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
+				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs"><a href="index">首页</a> </li>
+				<li><a href="${pageContext.request.contextPath}/article/toArticleList"><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">商品列表</a><a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
 				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">奖金管理<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
 				<li><button type="button" class="am-btn am-btn-default am-radius am-btn-xs">产品管理<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close="">×</a></button></li>
 				

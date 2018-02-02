@@ -5,25 +5,25 @@
       + request.getServerName() + ":" + request.getServerPort()
       + path + "/";
 %>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html class="no-js">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Amaze UI Admin index Examples</title>
+<title>会员积分管理系统 - 会员管理系统</title>
 <meta name="description" content="这是一个 index 页面">
 <meta name="keywords" content="index">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="renderer" content="webkit">
 <meta http-equiv="Cache-Control" content="no-siteapp" />
-<link rel="icon" type="image/png" href="resource/i/favicon.png">
-<link rel="apple-touch-icon-precomposed" href="resource/i/app-icon72x72@2x.png">
+<link rel="icon" type="${pageContext.request.contextPath}/image/png" href="${pageContext.request.contextPath}/resource/i/favicon.png">
+<link rel="apple-touch-icon-precomposed" href="${pageContext.request.contextPath}/resource/i/app-icon72x72@2x.png">
 <meta name="apple-mobile-web-app-title" content="Amaze UI" />
-<link rel="stylesheet" href="resource/css/amazeui.min.css"/>
-<link rel="stylesheet" href="resource/css/admin.css">
-<script src="resource/js/jquery.min.js"></script>
-<script src="resource/js/app.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resource/css/amazeui.min.css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resource/css/admin.css">
+<script src="${pageContext.request.contextPath}/resource/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resource/js/app.js"></script>
 </head>
 <body>
 <!--[if lte IE 9]><p class="browsehappy">升级你的浏览器吧！ <a href="http://se.360.cn/" target="_blank">升级浏览器</a>以获得更好的体验！</p><![endif]-->
@@ -37,7 +37,7 @@
 
 <body>
 <header class="am-topbar admin-header">
-  <div class="am-topbar-brand"><img src="resource/i/logo.png"></div>
+  <div class="am-topbar-brand"><img src="${pageContext.request.contextPath}/resource/i/logo.png"></div>
 
   <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
     <ul class="am-nav am-nav-pills am-topbar-nav admin-header-list">
@@ -105,56 +105,39 @@
 <div class="nav-navicon admin-main admin-sidebar">
     
     
-    <div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"> 欢迎系统管理员：清风抚雪</div>
+     <div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"> 欢迎系统管理员：超哥哥</div>
     <div class="sideMenu">
       <h3 class="am-icon-flag"><em></em> <a href="#">商品管理</a></h3>
       <ul>
-        <li><a href="">商品列表</a></li>
-        <li class="func" dataType='html' dataLink='msn.htm' iconImg='images/msn.gif'>添加新商品</li>
-        <li>商品分类</li>
-        <li>用户评论</li>
-        <li>商品回收站</li>
-        <li>库存管理 </li>
+        <li><a href="${pageContext.request.contextPath}/article/toArticleList">商品列表</a></li>
+        <li><a href="${pageContext.request.contextPath}/article/toAddNewArticle">添加新商品</a></li>
+        <li><a href="${pageContext.request.contextPath}/article/toArticleClassify">商品分类</a></li> 
+        <li><a href="${pageContext.request.contextPath}/article/toStockControl">库存管理</a></li>
       </ul>
       <h3 class="am-icon-cart-plus"><em></em> <a href="#"> 订单管理</a></h3>
       <ul>
-        <li>订单列表</li>
-        <li>合并订单</li>
-        <li>订单打印</li>
+        <li><a href="${pageContext.request.contextPath}/Orders/orderList">订单列表</a></li>
         <li>添加订单</li>
         <li>发货单列表</li>
-        <li>换货单列表</li>
       </ul>
-      <h3 class="am-icon-users on"><em></em> <a href="#">会员管理</a></h3>
+      <h3 class="am-icon-users"><em></em> <a href="#">会员管理</a></h3>
       <ul>
-        <li>会员列表 </li>
-        <li>未激活会员</li>
-        <li>团队系谱图</li>
-        <li>会员推荐图</li>
-        <li>推荐列表</li>
+        <li><a href="${pageContext.request.contextPath}/user/findAllMember">会员列表</a> </li>
+        <li>会员积分修改</li>
+        <li>会员积分分布图</li>
+        <li>会员等级分布图</li>
       </ul>
-      <h3 class="am-icon-volume-up"><em></em> <a href="#">信息通知</a></h3>
-      <ul>
-        <li>站内消息 /留言 </li>
-        <li>短信</li>
-        <li>邮件</li>
-        <li>微信</li>
-        <li>客服</li>
-      </ul>
+      
       <h3 class="am-icon-gears"><em></em> <a href="#">系统设置</a></h3>
       <ul>
         <li>数据备份</li>
-        <li>邮件/短信管理</li>
-        <li>上传/下载</li>
         <li>权限</li>
         <li>网站设置</li>
-        <li>第三方支付</li>
-        <li>提现 /转账 出入账汇率</li>
         <li>平台设置</li>
         <li>声音文件</li>
       </ul>
     </div>
-    <!-- sideMenu End --> 
+    <!-- sideMenu End -->
     
     <script type="text/javascript">
 			jQuery(".sideMenu").slide({
@@ -331,11 +314,9 @@
         <div class="zuo">状态：</div>
         <div class="you" style="margin-top: 3px;">
           <label class="am-checkbox-inline">
-            <input type="checkbox" value="option1">
-            显示 </label>
+            <input type="checkbox" value="option1"> 显示 </label>
           <label class="am-checkbox-inline">
-            <input type="checkbox" value="option2">
-            隐藏 </label>
+            <input type="checkbox" value="option2"> 隐藏 </label>
 
             </div>
         </div>
@@ -347,28 +328,13 @@
           </div>
         </div>
       </form>
-    
-
-
-
-
-
-
-
-
-
 
 
     </div>
 
-	
 
 </div>
 	
-	
-	
-	
-
 
 <div class="admin-biaogelist">
 	
@@ -382,97 +348,48 @@
       </dl>
       <!--这里打开的是新页面-->
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
+    
       
       
     </div>
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-	
-	
-
 
     <form class="am-form am-g">
           <table width="100%" class="am-table am-table-bordered am-table-radius am-table-striped">
             <thead>
               <tr class="am-success">
                 <th class="table-check"><input type="checkbox" /></th>
-
-                <th class="table-id">ID</th>
+  				<th class="table-id">ID</th>
                 <th class="table-title">会员名称</th>
                 <th class="table-type">会员等级</th>
                 <th class="table-author am-hide-sm-only">会员积分</th>
-                <th class="table-author am-hide-sm-only">注册日期</th>
-                <th class="table-date am-hide-sm-only">最近消费</th>
+                <th class="table-type">帐号权限</th>
                 <th width="130px" class="table-set">操作</th>
               </tr>
             </thead>
+            
+            
             <tbody>
+            <c:forEach items="${userList}" var="tc">
               <tr>
                 <td><input type="checkbox" /></td>
-                
-                <td>14</td>
-                <td><a href="#">Business management</a></td>
-                <td>3件 （消费455个积分）</td>
-                <td class="am-hide-sm-only">访问</td><td class="am-hide-sm-only">访问</td>
-                <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
+                <td>${tc.id}</td>
+                <td>${tc.name}</td>
+                <td>${tc.gname}</td>
+                <td class="am-hide-sm-only">${tc.sNumber}</td>
+                <td class="am-hide-sm-only">${tc.rname}</td>
                 <td>
-                	
-                	
-                      	
+            	     	
                 	<div class="am-btn-toolbar">
                     <div class="am-btn-group am-btn-group-xs">
                       <button class="am-btn am-btn-default am-btn-xs am-text-success am-round"><span class="am-icon-search" title="查看订单详情"></span> </button>
-                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" data-am-modal="{target: '#my-popups'}" title="修改订单"><span class="am-icon-pencil-square-o"></span></button>
+                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" title="修改订单"><span class="am-icon-pencil-square-o"></span></button>
                       <button class="am-btn am-btn-default am-btn-xs am-text-danger am-round" title="删除订单"><span class="am-icon-trash-o" ></span></button>
                     </div>
-                  </div>
-                	
-                	
-                	
-                	
-                	
-                	
+                  </div>	
                 </td>
               </tr>
-              <tr>
-                <td><input type="checkbox" /></td>
-                
-                <td>15</td>
-                <td><a href="#">Business management</a></td>
-                <td>default</td>
-                <td class="am-hide-sm-only"><i class="am-icon-close am-text-primary"></i></td><td class="am-hide-sm-only">访问</td>
-                <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
-                <td>
-                	
-                	<div class="am-btn-toolbar">
-                    <div class="am-btn-group am-btn-group-xs">
-                      <button class="am-btn am-btn-default am-btn-xs am-text-success am-round"><span class="am-icon-search" title="查看订单详情"></span> </button>
-                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary am-round" data-am-modal="{target: '#my-popups'}" title="修改订单"><span class="am-icon-pencil-square-o"></span></button>
-                      <button class="am-btn am-btn-default am-btn-xs am-text-danger am-round" title="删除订单"><span class="am-icon-trash-o" ></span></button>
-                    </div>
-                  </div>
-                
-                </td>
-              </tr>
+              </c:forEach>
             </tbody>
           </table>
           
@@ -537,7 +454,7 @@
 <![endif]--> 
 
 <!--[if (gte IE 9)|!(IE)]><!--> 
-<script src="resource/js/amazeui.min.js"></script>
+<script src="${pageContext.request.contextPath}/resource/js/amazeui.min.js"></script>
 <!--<![endif]-->
 
 

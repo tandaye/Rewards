@@ -1,5 +1,8 @@
 package com.tc.rewards.service;
 
+import java.util.List;
+
+import com.tc.rewards.expand.UserExpand;
 import com.tc.rewards.pojo.User;
 
 public interface UserService {
@@ -13,6 +16,9 @@ public interface UserService {
 	  
 	// 用户登录
 	public User checkLogin(User user);
+	
+	  //会员查询
+	  public List<UserExpand> findAllUsers();
 		
 	
 }
